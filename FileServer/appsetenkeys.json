@@ -1,0 +1,5 @@
+{
+  "Keys": [
+    "Serilog:WriteTo:1:Args:path"
+  ]
+}

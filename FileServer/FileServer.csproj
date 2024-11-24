@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+    <ItemGroup>
+        <ProjectReference Include="..\..\SystemTools\SystemToolsShared\SystemToolsShared.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\ApiExceptionHandler\ApiExceptionHandler.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\TestToolsApi\TestToolsApi.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\StaticFilesTools\StaticFilesTools.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebInstallers\WebInstallers.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\ConfigurationEncrypt\ConfigurationEncrypt.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\SerilogLogger\SerilogLogger.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\SwaggerTools\SwaggerTools.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WindowsServiceTools\WindowsServiceTools.csproj" />
+    </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <UserSecretsId>0dc7fe24-8199-43fe-9bee-5d04eaeabe72</UserSecretsId>
+    </PropertyGroup>
+</Project>
