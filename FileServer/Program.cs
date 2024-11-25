@@ -34,7 +34,11 @@ try
             StaticFilesTools.AssemblyReference.Assembly,
             SwaggerTools.AssemblyReference.Assembly,
             TestToolsApi.AssemblyReference.Assembly,
-            WindowsServiceTools.AssemblyReference.Assembly
+            WindowsServiceTools.AssemblyReference.Assembly,
+
+
+//FileServer
+            FileServerApi.AssemblyReference.Assembly
         ))
     {
         return 2;

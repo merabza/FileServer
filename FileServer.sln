@@ -33,13 +33,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwaggerTools", "..\WebSyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceTools", "..\WebSystemTools\WindowsServiceTools\WindowsServiceTools.csproj", "{2060C79D-DBBC-4656-B168-43DF9BBCA749}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileServerApi", "FileServerApi\FileServerApi.csproj", "{4D202CC1-87A5-408C-BB1F-0C10104BC3C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B3B03746-D7A6-42F9-972F-E068B4959753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -94,6 +93,13 @@ Global
 		{2060C79D-DBBC-4656-B168-43DF9BBCA749}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2060C79D-DBBC-4656-B168-43DF9BBCA749}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2060C79D-DBBC-4656-B168-43DF9BBCA749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D202CC1-87A5-408C-BB1F-0C10104BC3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D202CC1-87A5-408C-BB1F-0C10104BC3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D202CC1-87A5-408C-BB1F-0C10104BC3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D202CC1-87A5-408C-BB1F-0C10104BC3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{47DE9A9B-1569-4E1F-809A-D4E1D767D8E8} = {32919085-125D-4691-9CD2-A5AF0DD8DCC7}

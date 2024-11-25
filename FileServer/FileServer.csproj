@@ -9,6 +9,7 @@
         <ProjectReference Include="..\..\WebSystemTools\SerilogLogger\SerilogLogger.csproj" />
         <ProjectReference Include="..\..\WebSystemTools\SwaggerTools\SwaggerTools.csproj" />
         <ProjectReference Include="..\..\WebSystemTools\WindowsServiceTools\WindowsServiceTools.csproj" />
+        <ProjectReference Include="..\FileServerApi\FileServerApi.csproj" />
     </ItemGroup>
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
