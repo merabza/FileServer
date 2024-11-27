@@ -1,5 +1,6 @@
 {
-  "Keys": [
-    "Serilog:WriteTo:1:Args:path"
-  ]
+    "Keys": [
+        "Serilog:WriteTo:1:Args:path",
+        "FileServerSettings:FileServerLocalPath"
+    ]
 }

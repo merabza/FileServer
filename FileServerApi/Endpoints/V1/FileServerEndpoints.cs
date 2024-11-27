@@ -1,11 +1,8 @@
-﻿using System.Reflection;
-using System.Text;
-using FileServerApi.V1.Routes;
+﻿using FileServerApi.V1.Routes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using WebInstallers;
 
 namespace FileServerApi.Endpoints.V1;
@@ -46,21 +43,17 @@ public sealed class FileServerEndpoints : IInstaller
     //[HttpGet(TestApiRoutes.Test.TestConnection)]
     private static IResult DownloadFile([FromRoute] string fileName, IConfiguration configuration)
     {
-        const string mimeType = "application/x-iso9660-image";
+        const string mimeType = "application/octet-stream";
         var path = FileServerLocalPathFromSettings(configuration);
-        if ( path is null )
+        if (path is null)
             throw new ArgumentNullException(nameof(path));
-        return Results.File(path, contentType: mimeType);
+        return Results.File(Path.Combine(path,fileName), mimeType);
     }
 
 
-    
     private static string? FileServerLocalPathFromSettings(IConfiguration configuration)
     {
         var fileServerSettings = FileServerSettings.Create(configuration);
         return fileServerSettings?.FileServerLocalPath;
     }
-
-
-
 }
