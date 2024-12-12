@@ -13,4 +13,12 @@ public static class FileServerApiRoutes
         // GET api/v1/download/file/{fileName}
         public const string File = "/file/{fileName}";
     }
+
+    public static class Upload
+    {
+        public const string UploadBase = "/upload";
+
+        // GET api/v1/download/file/{fileName}
+        public const string File = "/file";
+    }
 }

@@ -1,8 +1,12 @@
-﻿using FileServerApi.V1.Routes;
+﻿using System.Net.Mime;
+using FileServerApi.V1.Routes;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using WebInstallers;
 
 namespace FileServerApi.Endpoints.V1;
@@ -16,6 +20,15 @@ public sealed class FileServerEndpoints : IInstaller
     public bool InstallServices(WebApplicationBuilder builder, bool debugMode, string[] args,
         Dictionary<string, string> parameters)
     {
+        builder.WebHost.ConfigureKestrel((context, options) =>
+        {
+            options.Limits.MaxRequestBodySize = context.Configuration.GetValue<long>("Kestrel:Limits:MaxRequestBodySize");
+        });
+
+        builder.Services.Configure<FormOptions>(options => { options.MultipartBodyLengthLimit = 5545902080; });
+
+
+        builder.Services.AddAntiforgery();
         return true;
     }
 
@@ -24,9 +37,19 @@ public sealed class FileServerEndpoints : IInstaller
         if (debugMode)
             Console.WriteLine($"{GetType().Name}.{nameof(UseServices)} Started");
 
-        var group = app.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
+        var downloadGroup = app.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
 
-        group.MapGet(FileServerApiRoutes.Download.File, DownloadFile);
+        downloadGroup.MapGet(FileServerApiRoutes.Download.File, DownloadFile);
+
+
+        var uploadGroup = app.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Upload.UploadBase);
+
+        uploadGroup.MapPost(FileServerApiRoutes.Upload.File, UploadFile).DisableAntiforgery()
+            //.Accepts<IFormFile>("multipart/form-data")
+            //.Accepts("multipart/form-data")
+            .Produces(200);
+
+        app.UseAntiforgery();
 
         if (debugMode)
             Console.WriteLine($"{GetType().Name}.{nameof(UseServices)} Finished");
@@ -43,17 +66,48 @@ public sealed class FileServerEndpoints : IInstaller
     //[HttpGet(TestApiRoutes.Test.TestConnection)]
     private static IResult DownloadFile([FromRoute] string fileName, IConfiguration configuration)
     {
-        const string mimeType = "application/octet-stream";
+        const string mimeType = MediaTypeNames.Application.Octet;
         var path = FileServerLocalPathFromSettings(configuration);
         if (path is null)
             throw new ArgumentNullException(nameof(path));
-        return Results.File(Path.Combine(path,fileName), mimeType);
+        return Results.File(Path.Combine(path, fileName), mimeType);
     }
 
+    //IFormFile? file, 
+    //HttpContext context
+    private static async Task<IResult> UploadFile(HttpContext context, IConfiguration configuration,
+        CancellationToken cancellationToken)
+    {
+        var form = await context.Request.ReadFormAsync(cancellationToken);
+        var file = form.Files.GetFile("file");
+
+
+
+        var path = FileServerUploadLocalPathFromSettings(configuration);
+        if (path is null)
+            throw new ArgumentNullException(nameof(path));
+
+        if (file == null || file.Length == 0)
+            return Results.BadRequest("No file uploaded.");
+
+        var filePath = Path.Combine(path, file.FileName);
+        await using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream, cancellationToken);
+        }
+
+        return Results.Ok();
+    }
 
     private static string? FileServerLocalPathFromSettings(IConfiguration configuration)
     {
         var fileServerSettings = FileServerSettings.Create(configuration);
         return fileServerSettings?.FileServerLocalPath;
+    }
+
+    private static string? FileServerUploadLocalPathFromSettings(IConfiguration configuration)
+    {
+        var fileServerSettings = FileServerSettings.Create(configuration);
+        return fileServerSettings?.FileServerUploadLocalPath;
     }
 }
