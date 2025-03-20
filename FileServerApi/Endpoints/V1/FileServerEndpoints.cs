@@ -22,11 +22,11 @@ public sealed class FileServerEndpoints : IInstaller
     {
         builder.WebHost.ConfigureKestrel((context, options) =>
         {
-            options.Limits.MaxRequestBodySize = context.Configuration.GetValue<long>("Kestrel:Limits:MaxRequestBodySize");
+            options.Limits.MaxRequestBodySize =
+                context.Configuration.GetValue<long>("Kestrel:Limits:MaxRequestBodySize");
         });
 
         builder.Services.Configure<FormOptions>(options => { options.MultipartBodyLengthLimit = 5545902080; });
-
 
         builder.Services.AddAntiforgery();
         return true;
@@ -40,7 +40,6 @@ public sealed class FileServerEndpoints : IInstaller
         var downloadGroup = app.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
 
         downloadGroup.MapGet(FileServerApiRoutes.Download.File, DownloadFile);
-
 
         var uploadGroup = app.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Upload.UploadBase);
 
@@ -80,8 +79,6 @@ public sealed class FileServerEndpoints : IInstaller
     {
         var form = await context.Request.ReadFormAsync(cancellationToken);
         var file = form.Files.GetFile("file");
-
-
 
         var path = FileServerUploadLocalPathFromSettings(configuration);
         if (path is null)
