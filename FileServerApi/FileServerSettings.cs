@@ -2,7 +2,7 @@
 
 namespace FileServerApi;
 
-public class FileServerSettings
+public sealed class FileServerSettings
 {
     public string? FileServerLocalPath { get; set; }
     public string? FileServerUploadLocalPath { get; set; }
