@@ -1,4 +1,9 @@
-﻿using System.Net.Mime;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FileServerApi.V1.Routes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -88,6 +93,7 @@ public sealed class FileServerEndpoints : IInstaller
             return Results.BadRequest("No file uploaded.");
 
         var filePath = Path.Combine(path, file.FileName);
+        // ReSharper disable once DisposableConstructor
         await using (var stream = new FileStream(filePath, FileMode.Create))
         {
             await file.CopyToAsync(stream, cancellationToken);
