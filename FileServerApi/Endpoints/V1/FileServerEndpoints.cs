@@ -87,7 +87,7 @@ public sealed class FileServerEndpoints : IInstaller
 
         var path = FileServerUploadLocalPathFromSettings(configuration);
         if (path is null)
-            throw new ArgumentNullException(nameof(path));
+            throw new ArgumentNullException(nameof(configuration), "File server upload path is not configured.");
 
         if (file == null || file.Length == 0)
             return Results.BadRequest("No file uploaded.");
