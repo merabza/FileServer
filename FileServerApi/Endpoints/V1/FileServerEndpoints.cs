@@ -72,7 +72,9 @@ public sealed class FileServerEndpoints : IInstaller
     {
         const string mimeType = MediaTypeNames.Application.Octet;
         var path = FileServerLocalPathFromSettings(configuration);
-        return path is null ? throw new ArgumentNullException(nameof(path)) : Results.File(Path.Combine(path, fileName), mimeType);
+        return path is null
+            ? throw new ArgumentNullException(nameof(path))
+            : Results.File(Path.Combine(path, fileName), mimeType);
     }
 
     //IFormFile? file, 
