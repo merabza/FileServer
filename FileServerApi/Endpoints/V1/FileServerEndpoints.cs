@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Mime;
 using System.Threading;
@@ -10,53 +9,55 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebInstallers;
 
 namespace FileServerApi.Endpoints.V1;
 
 // ReSharper disable once UnusedType.Global
-public sealed class FileServerEndpoints : IInstaller
+public static class FileServerEndpoints
 {
-    public int InstallPriority => 70;
-    public int ServiceUsePriority => 70;
-
-    public bool InstallServices(WebApplicationBuilder builder, bool debugMode, string[] args,
-        Dictionary<string, string> parameters)
+    public static IServiceCollection AddFileServer(this IServiceCollection services, IWebHostBuilder webHostBuilder,
+        bool debugMode)
     {
-        builder.WebHost.ConfigureKestrel((context, options) =>
+        if (debugMode)
+            Console.WriteLine($"{nameof(AddFileServer)} Started");
+
+        webHostBuilder.ConfigureKestrel((context, options) =>
         {
             options.Limits.MaxRequestBodySize =
                 context.Configuration.GetValue<long>("Kestrel:Limits:MaxRequestBodySize");
         });
 
-        builder.Services.Configure<FormOptions>(options => { options.MultipartBodyLengthLimit = 5545902080; });
+        services.Configure<FormOptions>(options => { options.MultipartBodyLengthLimit = 5545902080; });
 
-        builder.Services.AddAntiforgery();
-        return true;
+        services.AddAntiforgery();
+
+        if (debugMode)
+            Console.WriteLine($"{nameof(AddFileServer)} Finished");
+
+        return services;
     }
 
-    public bool UseServices(WebApplication app, bool debugMode)
+    public static bool UseFileServerEndpoints(this IEndpointRouteBuilder endpoints, bool debugMode)
     {
         if (debugMode)
-            Console.WriteLine($"{GetType().Name}.{nameof(UseServices)} Started");
+            Console.WriteLine($"{nameof(UseFileServerEndpoints)} Started");
 
-        var downloadGroup = app.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
+        var downloadGroup = endpoints.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
 
         downloadGroup.MapGet(FileServerApiRoutes.Download.File, DownloadFile);
 
-        var uploadGroup = app.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Upload.UploadBase);
+        var uploadGroup = endpoints.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Upload.UploadBase);
 
         uploadGroup.MapPost(FileServerApiRoutes.Upload.File, UploadFile).DisableAntiforgery()
             //.Accepts<IFormFile>("multipart/form-data")
             //.Accepts("multipart/form-data")
             .Produces(200);
 
-        app.UseAntiforgery();
-
         if (debugMode)
-            Console.WriteLine($"{GetType().Name}.{nameof(UseServices)} Finished");
+            Console.WriteLine($"{nameof(UseFileServerEndpoints)} Finished");
 
         return true;
     }
