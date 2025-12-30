@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/SystemTools/">
+    <Project Path="../SystemTools/ApiContracts/ApiContracts.csproj" />
+    <Project Path="../SystemTools/SystemToolsShared/SystemToolsShared.csproj" />
+    <Project Path="../SystemTools/TestApiContracts/TestApiContracts.csproj" />
+  </Folder>
+  <Folder Name="/WebSystemTools/">
+    <Project Path="../WebSystemTools/ApiExceptionHandler/ApiExceptionHandler.csproj" />
+    <Project Path="../WebSystemTools/ConfigurationEncrypt/ConfigurationEncrypt.csproj" />
+    <Project Path="../WebSystemTools/SerilogLogger/SerilogLogger.csproj" />
+    <Project Path="../WebSystemTools/StaticFilesTools/StaticFilesTools.csproj" />
+    <Project Path="../WebSystemTools/SwaggerTools/SwaggerTools.csproj" />
+    <Project Path="../WebSystemTools/TestToolsApi/TestToolsApi.csproj" />
+    <Project Path="../WebSystemTools/TestToolsData/TestToolsData.csproj" />
+    <Project Path="../WebSystemTools/WindowsServiceTools/WindowsServiceTools.csproj" />
+  </Folder>
+  <Project Path="FileServer/FileServer.csproj" />
+  <Project Path="FileServerApi/FileServerApi.csproj" />
+</Solution>
