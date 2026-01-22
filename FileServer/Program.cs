@@ -20,7 +20,7 @@ try
     const string appName = "File Server";
     const int versionCount = 1;
 
-    var header = $"{appName} {Assembly.GetEntryAssembly()?.GetName().Version}";
+    string header = $"{appName} {Assembly.GetEntryAssembly()?.GetName().Version}";
     Console.WriteLine(FiggleFonts.Standard.Render(header));
 
     var builder = WebApplication.CreateBuilder(new WebApplicationOptions
@@ -28,12 +28,12 @@ try
         ContentRootPath = AppContext.BaseDirectory, Args = args
     });
 
-    var debugMode = builder.Environment.IsDevelopment();
+    bool debugMode = builder.Environment.IsDevelopment();
 
-    builder.Host.UseSerilogLogger(builder.Configuration, debugMode);
-    builder.Host.UseWindowsServiceOnWindows(debugMode, args);
+    var logger = builder.Host.UseSerilogLogger(builder.Configuration, debugMode);
+    builder.Host.UseWindowsServiceOnWindows(logger, debugMode, args);
 
-    builder.Configuration.AddConfigurationEncryption(debugMode, "29ab6e4bcd1a40d8a37ad141d59a575e");
+    builder.Configuration.AddConfigurationEncryption(logger, debugMode, "29ab6e4bcd1a40d8a37ad141d59a575e");
 
     // @formatter:off
     builder.Services
@@ -44,7 +44,7 @@ try
 
     //ReSharper disable once using
 
-    using var app = builder.Build();
+    await using var app = builder.Build();
 
     //WebSystemTools
     // ReSharper disable once RedundantArgumentDefaultValue
@@ -56,7 +56,7 @@ try
     app.UseFileServerEndpoints(debugMode);
     app.UseAntiforgery();
 
-    app.Run();
+    await app.RunAsync();
     return 0;
 }
 catch (Exception e)
@@ -66,5 +66,5 @@ catch (Exception e)
 }
 finally
 {
-    Log.CloseAndFlush();
+    await Log.CloseAndFlushAsync();
 }

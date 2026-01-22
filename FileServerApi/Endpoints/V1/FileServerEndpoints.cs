@@ -22,7 +22,9 @@ public static class FileServerEndpoints
         bool debugMode)
     {
         if (debugMode)
+        {
             Console.WriteLine($"{nameof(AddFileServer)} Started");
+        }
 
         webHostBuilder.ConfigureKestrel((context, options) =>
         {
@@ -35,7 +37,9 @@ public static class FileServerEndpoints
         services.AddAntiforgery();
 
         if (debugMode)
+        {
             Console.WriteLine($"{nameof(AddFileServer)} Finished");
+        }
 
         return services;
     }
@@ -43,13 +47,17 @@ public static class FileServerEndpoints
     public static bool UseFileServerEndpoints(this IEndpointRouteBuilder endpoints, bool debugMode)
     {
         if (debugMode)
+        {
             Console.WriteLine($"{nameof(UseFileServerEndpoints)} Started");
+        }
 
-        var downloadGroup = endpoints.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
+        RouteGroupBuilder downloadGroup =
+            endpoints.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
 
         downloadGroup.MapGet(FileServerApiRoutes.Download.File, DownloadFile);
 
-        var uploadGroup = endpoints.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Upload.UploadBase);
+        RouteGroupBuilder uploadGroup =
+            endpoints.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Upload.UploadBase);
 
         uploadGroup.MapPost(FileServerApiRoutes.Upload.File, UploadFile).DisableAntiforgery()
             //.Accepts<IFormFile>("multipart/form-data")
@@ -57,7 +65,9 @@ public static class FileServerEndpoints
             .Produces(200);
 
         if (debugMode)
+        {
             Console.WriteLine($"{nameof(UseFileServerEndpoints)} Finished");
+        }
 
         return true;
     }
@@ -72,9 +82,9 @@ public static class FileServerEndpoints
     private static IResult DownloadFile([FromRoute] string fileName, IConfiguration configuration)
     {
         const string mimeType = MediaTypeNames.Application.Octet;
-        var path = FileServerLocalPathFromSettings(configuration);
+        string? path = FileServerLocalPathFromSettings(configuration);
         return path is null
-            ? throw new ArgumentNullException(nameof(path))
+            ? throw new ArgumentNullException(nameof(configuration))
             : Results.File(Path.Combine(path, fileName), mimeType);
     }
 
@@ -83,17 +93,19 @@ public static class FileServerEndpoints
     private static async Task<IResult> UploadFile(HttpContext context, IConfiguration configuration,
         CancellationToken cancellationToken)
     {
-        var form = await context.Request.ReadFormAsync(cancellationToken);
-        var file = form.Files.GetFile("file");
+        IFormCollection form = await context.Request.ReadFormAsync(cancellationToken);
+        IFormFile? file = form.Files.GetFile("file");
 
-        var path = FileServerUploadLocalPathFromSettings(configuration);
-        if (path is null)
-            throw new ArgumentNullException(nameof(configuration), "File server upload path is not configured.");
+        string path = FileServerUploadLocalPathFromSettings(configuration) ??
+                      throw new ArgumentNullException(nameof(configuration),
+                          "File server upload path is not configured.");
 
         if (file == null || file.Length == 0)
+        {
             return Results.BadRequest("No file uploaded.");
+        }
 
-        var filePath = Path.Combine(path, file.FileName);
+        string filePath = Path.Combine(path, file.FileName);
         // ReSharper disable once DisposableConstructor
         await using (var stream = new FileStream(filePath, FileMode.Create))
         {

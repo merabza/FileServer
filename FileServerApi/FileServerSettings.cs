@@ -9,7 +9,7 @@ public sealed class FileServerSettings
 
     public static FileServerSettings? Create(IConfiguration configuration)
     {
-        var projectSettingsSection = configuration.GetSection("FileServerSettings");
+        IConfigurationSection projectSettingsSection = configuration.GetSection("FileServerSettings");
         return projectSettingsSection.Get<FileServerSettings>();
     }
 }

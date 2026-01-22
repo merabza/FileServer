@@ -1,8 +1,13 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
   <Folder Name="/SystemTools/">
-    <Project Path="../SystemTools/ApiContracts/ApiContracts.csproj" />
-    <Project Path="../SystemTools/SystemToolsShared/SystemToolsShared.csproj" />
-    <Project Path="../SystemTools/TestApiContracts/TestApiContracts.csproj" />
+    <Project Path="../SystemTools/SystemTools.ApiContracts/SystemTools.ApiContracts.csproj" />
+    <Project Path="../SystemTools/SystemTools.SystemToolsShared/SystemTools.SystemToolsShared.csproj" />
+    <Project Path="../SystemTools/SystemTools.TestApiContracts/SystemTools.TestApiContracts.csproj" />
   </Folder>
   <Folder Name="/WebSystemTools/">
     <Project Path="../WebSystemTools/ApiExceptionHandler/ApiExceptionHandler.csproj" />
