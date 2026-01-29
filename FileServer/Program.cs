@@ -18,6 +18,7 @@ try
     Console.WriteLine("Loading...");
 
     const string appName = "File Server";
+    const string appKey = "29ab6e4bcd1a40d8a37ad141d59a575e";
     const int versionCount = 1;
 
     string header = $"{appName} {Assembly.GetEntryAssembly()?.GetName().Version}";
@@ -30,16 +31,17 @@ try
 
     bool debugMode = builder.Environment.IsDevelopment();
 
-    var logger = builder.Host.UseSerilogLogger(builder.Configuration, debugMode);
-    builder.Host.UseWindowsServiceOnWindows(logger, debugMode, args);
+    var logger = builder.Host.UseSerilogLogger(debugMode, builder.Configuration);
+    ILogger? debugLogger = debugMode ? logger : null;
+    builder.Host.UseWindowsServiceOnWindows(debugLogger, args);
 
-    builder.Configuration.AddConfigurationEncryption(logger, debugMode, "29ab6e4bcd1a40d8a37ad141d59a575e");
+    builder.Configuration.AddConfigurationEncryption(debugLogger, appKey);
 
     // @formatter:off
     builder.Services
         //WebSystemTools
-        .AddSwagger(debugMode, true, versionCount, appName)
-        .AddFileServer(builder.WebHost, debugMode);
+        .AddSwagger(debugLogger, true, versionCount, appName)
+        .AddFileServer(debugLogger, builder.WebHost);
     // @formatter:on
 
     //ReSharper disable once using
@@ -48,12 +50,12 @@ try
 
     //WebSystemTools
     // ReSharper disable once RedundantArgumentDefaultValue
-    app.UseSwaggerServices(debugMode, versionCount);
-    app.UseApiExceptionHandler(debugMode);
-    app.UseDefaultAndStaticFiles(debugMode);
+    app.UseSwaggerServices(debugLogger, versionCount);
+    app.UseApiExceptionHandler(debugLogger);
+    app.UseDefaultAndStaticFiles(debugLogger);
 
-    app.UseTestToolsApiEndpoints(debugMode);
-    app.UseFileServerEndpoints(debugMode);
+    app.UseTestToolsApiEndpoints(debugLogger);
+    app.UseFileServerEndpoints(debugLogger);
     app.UseAntiforgery();
 
     await app.RunAsync();

@@ -12,19 +12,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace FileServerApi.Endpoints.V1;
 
 // ReSharper disable once UnusedType.Global
 public static class FileServerEndpoints
 {
-    public static IServiceCollection AddFileServer(this IServiceCollection services, IWebHostBuilder webHostBuilder,
-        bool debugMode)
+    public static IServiceCollection AddFileServer(this IServiceCollection services, ILogger? debugLogger, IWebHostBuilder webHostBuilder)
     {
-        if (debugMode)
-        {
-            Console.WriteLine($"{nameof(AddFileServer)} Started");
-        }
+        debugLogger?.Information("{MethodName} Started", nameof(AddFileServer));
 
         webHostBuilder.ConfigureKestrel((context, options) =>
         {
@@ -36,20 +33,14 @@ public static class FileServerEndpoints
 
         services.AddAntiforgery();
 
-        if (debugMode)
-        {
-            Console.WriteLine($"{nameof(AddFileServer)} Finished");
-        }
+        debugLogger?.Information("{MethodName} Finished", nameof(AddFileServer));
 
         return services;
     }
 
-    public static bool UseFileServerEndpoints(this IEndpointRouteBuilder endpoints, bool debugMode)
+    public static bool UseFileServerEndpoints(this IEndpointRouteBuilder endpoints, ILogger? debugLogger)
     {
-        if (debugMode)
-        {
-            Console.WriteLine($"{nameof(UseFileServerEndpoints)} Started");
-        }
+        debugLogger?.Information("{MethodName} Started", nameof(UseFileServerEndpoints));
 
         RouteGroupBuilder downloadGroup =
             endpoints.MapGroup(FileServerApiRoutes.ApiBase + FileServerApiRoutes.Download.DownloadBase);
@@ -64,10 +55,7 @@ public static class FileServerEndpoints
             //.Accepts("multipart/form-data")
             .Produces(200);
 
-        if (debugMode)
-        {
-            Console.WriteLine($"{nameof(UseFileServerEndpoints)} Finished");
-        }
+        debugLogger?.Information("{MethodName} Finished", nameof(UseFileServerEndpoints));
 
         return true;
     }
