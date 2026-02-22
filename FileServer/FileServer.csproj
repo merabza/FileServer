@@ -3,19 +3,16 @@
       <PackageReference Include="Figgle.Fonts" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\WebSystemTools\ApiExceptionHandler\ApiExceptionHandler.csproj" />
-        <ProjectReference Include="..\..\WebSystemTools\TestToolsApi\TestToolsApi.csproj" />
-        <ProjectReference Include="..\..\WebSystemTools\StaticFilesTools\StaticFilesTools.csproj" />
-        <ProjectReference Include="..\..\WebSystemTools\ConfigurationEncrypt\ConfigurationEncrypt.csproj" />
-        <ProjectReference Include="..\..\WebSystemTools\SerilogLogger\SerilogLogger.csproj" />
-        <ProjectReference Include="..\..\WebSystemTools\SwaggerTools\SwaggerTools.csproj" />
-        <ProjectReference Include="..\..\WebSystemTools\WindowsServiceTools\WindowsServiceTools.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.ApiExceptionHandler\WebSystemTools.ApiExceptionHandler.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.ConfigurationEncrypt\WebSystemTools.ConfigurationEncrypt.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.SerilogLogger\WebSystemTools.SerilogLogger.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.StaticFilesTools\WebSystemTools.StaticFilesTools.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.SwaggerTools\WebSystemTools.SwaggerTools.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.TestToolsApi\WebSystemTools.TestToolsApi.csproj" />
+        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.WindowsServiceTools\WebSystemTools.WindowsServiceTools.csproj" />
         <ProjectReference Include="..\FileServerApi\FileServerApi.csproj" />
     </ItemGroup>
     <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>disable</ImplicitUsings>
         <UserSecretsId>0dc7fe24-8199-43fe-9bee-5d04eaeabe72</UserSecretsId>
     </PropertyGroup>
 </Project>

@@ -1,17 +1,17 @@
 using System;
 using System.Reflection;
-using ApiExceptionHandler.DependencyInjection;
-using ConfigurationEncrypt;
 using Figgle.Fonts;
 using FileServerApi.Endpoints.V1;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using SerilogLogger;
-using StaticFilesTools.DependencyInjection;
-using SwaggerTools.DependencyInjection;
-using TestToolsApi.DependencyInjection;
-using WindowsServiceTools;
+using WebSystemTools.ApiExceptionHandler.DependencyInjection;
+using WebSystemTools.ConfigurationEncrypt;
+using WebSystemTools.SerilogLogger;
+using WebSystemTools.StaticFilesTools.DependencyInjection;
+using WebSystemTools.SwaggerTools.DependencyInjection;
+using WebSystemTools.TestToolsApi.DependencyInjection;
+using WebSystemTools.WindowsServiceTools;
 
 try
 {
