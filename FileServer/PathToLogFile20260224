@@ -1,0 +1,10 @@
+2026-02-24 11:01:48.501 +04:00 [INF] UseWindowsServiceOnWindows Started
+2026-02-24 11:01:48.524 +04:00 [INF] UseWindowsServiceOnWindows Finished
+2026-02-24 11:01:48.525 +04:00 [INF] AddConfigurationEncryption Started
+2026-02-24 11:01:48.541 +04:00 [FTL] Host terminated unexpectedly
+System.IO.FileNotFoundException: The configuration file 'appsettingsEncoded.json' was not found and is not optional. The expected physical path was 'D:\1WorkDotnet\FileServer\FileServer\FileServer\appsettingsEncoded.json'.
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at WebSystemTools.ConfigurationEncrypt.ConfigurationEncryptHostBuilderExtensions.AddConfigurationEncryption(IConfigurationBuilder configurationBuilder, ILogger debugLogger, String appKey) in D:\1WorkDotnet\FileServer\WebSystemTools\WebSystemTools.ConfigurationEncrypt\ConfigurationEncryptHostBuilderExtensions.cs:line 33
+   at Program.<Main>$(String[] args) in D:\1WorkDotnet\FileServer\FileServer\FileServer\Program.cs:line 38
