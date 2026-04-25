@@ -1,0 +1,61 @@
+2026-04-25 15:08:32.918 +04:00 [INF] UseWindowsServiceOnWindows Started
+2026-04-25 15:08:32.953 +04:00 [INF] UseWindowsServiceOnWindows Finished
+2026-04-25 15:08:32.954 +04:00 [INF] AddConfigurationEncryption Started
+2026-04-25 15:08:33.055 +04:00 [INF] AddConfigurationEncryption Finished
+2026-04-25 15:08:33.062 +04:00 [INF] AddSwagger Started
+2026-04-25 15:08:33.069 +04:00 [INF] AddSwagger Finished
+2026-04-25 15:08:33.071 +04:00 [INF] AddFileServer Started
+2026-04-25 15:08:33.083 +04:00 [INF] AddFileServer Finished
+2026-04-25 15:08:33.130 +04:00 [INF] UseSwaggerServices Started
+2026-04-25 15:08:33.138 +04:00 [INF] UseSwaggerServices Finished
+2026-04-25 15:08:33.142 +04:00 [INF] UseApiExceptionHandler Started
+2026-04-25 15:08:33.153 +04:00 [INF] UseApiExceptionHandler Finished
+2026-04-25 15:08:33.158 +04:00 [INF] UseDefaultAndStaticFiles Started
+2026-04-25 15:08:33.158 +04:00 [INF] UseDefaultAndStaticFiles Finished
+2026-04-25 15:08:33.159 +04:00 [INF] UseTestToolsApiEndpoints Started
+2026-04-25 15:08:33.163 +04:00 [INF] UseTestEndpoints Started
+2026-04-25 15:08:33.170 +04:00 [INF] UseTestEndpoints Finished
+2026-04-25 15:08:33.171 +04:00 [INF] UseTestToolsApiEndpoints Finished
+2026-04-25 15:08:33.173 +04:00 [INF] UseFileServerEndpoints Started
+2026-04-25 15:08:33.175 +04:00 [INF] UseFileServerEndpoints Finished
+2026-04-25 15:08:33.198 +04:00 [INF] User profile is available. Using 'C:\Users\merab\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-25 15:08:33.274 +04:00 [WRN] The WebRootPath was not found: D:\1WorkDotnet\FileServer\FileServer\FileServer\bin\Debug\net10.0\wwwroot. Static files may be unavailable.
+2026-04-25 15:08:33.359 +04:00 [INF] Now listening on: http://[::]:5099
+2026-04-25 15:08:33.363 +04:00 [FTL] Hosting startup assembly exception
+System.InvalidOperationException: Startup assembly File Server failed to execute. See the inner exception for more details.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'File Server, Culture=neutral, PublicKeyToken=null'. The system cannot find the file specified.
+File name: 'File Server, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.RuntimeAssembly.InternalLoad(AssemblyName assemblyName, StackCrawlMark& stackMark, AssemblyLoadContext assemblyLoadContext, RuntimeAssembly requestingAssembly, Boolean throwOnFileNotFound)
+   at System.Reflection.Assembly.Load(AssemblyName assemblyRef)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostBuilder.ExecuteHostingStartups()
+   --- End of inner exception stack trace ---
+2026-04-25 15:08:33.396 +04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-04-25 15:08:33.468 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-25 15:08:33.469 +04:00 [INF] Hosting environment: Development
+2026-04-25 15:08:33.472 +04:00 [INF] Content root path: D:\1WorkDotnet\FileServer\FileServer\FileServer\bin\Debug\net10.0\
+2026-04-25 15:08:34.333 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/index.html - null null
+2026-04-25 15:08:34.463 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/index.html - 200 null text/html;charset=utf-8 135.4883ms
+2026-04-25 15:08:34.523 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-25 15:08:34.523 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-bundle.js - null null
+2026-04-25 15:08:34.529 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/_framework/aspnetcore-browser-refresh.js - 200 14925 application/javascript; charset=utf-8 60.6338ms
+2026-04-25 15:08:34.523 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/index.js - null null
+2026-04-25 15:08:34.523 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-standalone-preset.js - null null
+2026-04-25 15:08:34.523 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/index.css - null null
+2026-04-25 15:08:34.524 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui.css - null null
+2026-04-25 15:08:34.539 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/index.js - 200 null application/javascript;charset=utf-8 71.7505ms
+2026-04-25 15:08:34.549 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/index.css - 304 null null 81.1445ms
+2026-04-25 15:08:34.550 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui.css - 200 26479 text/css 26.588ms
+2026-04-25 15:08:34.552 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-standalone-preset.js - 200 76613 text/javascript 84.0977ms
+2026-04-25 15:08:34.563 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-bundle.js - 200 418181 text/javascript 71.3987ms
+2026-04-25 15:08:34.675 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/v1/swagger.json - null null
+2026-04-25 15:08:34.684 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/favicon-32x32.png - null null
+2026-04-25 15:08:34.686 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 10.429ms
+2026-04-25 15:08:34.689 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/favicon-32x32.png - 200 628 image/png 5.164ms
+2026-04-25 15:08:35.547 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-25 15:08:35.550 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/index.js - null null
+2026-04-25 15:08:35.551 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-standalone-preset.js - null null
+2026-04-25 15:08:35.552 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-bundle.js - null null
+2026-04-25 15:08:35.552 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/_framework/aspnetcore-browser-refresh.js - 200 14925 application/javascript; charset=utf-8 4.9629ms
+2026-04-25 15:08:35.557 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/index.js - 200 null application/javascript;charset=utf-8 6.6493ms
+2026-04-25 15:08:35.560 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-standalone-preset.js - 200 76613 text/javascript 9.0248ms
+2026-04-25 15:08:35.564 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5099/swagger/swagger-ui-bundle.js - 200 418181 text/javascript 11.9752ms

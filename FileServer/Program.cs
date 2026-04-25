@@ -26,7 +26,7 @@ try
 
     var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     {
-        ContentRootPath = AppContext.BaseDirectory, Args = args
+        ContentRootPath = AppContext.BaseDirectory, Args = args, ApplicationName = appName
     });
 
     bool debugMode = builder.Environment.IsDevelopment();
