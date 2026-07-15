@@ -1,11 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Project>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.27.0.140913" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.29.0.143774" />
     <PackageVersion Include="Figgle.Fonts" Version="0.6.6" />
-    <PackageVersion Include="Serilog" Version="4.3.1" />
+    <PackageVersion Include="Serilog" Version="4.4.0" />
     <PackageVersion Include="WebSystemTools.ApiExceptionHandler" Version="1.0.9691.25983" />
     <PackageVersion Include="WebSystemTools.ConfigurationEncrypt" Version="1.0.9691.25983" />
     <PackageVersion Include="WebSystemTools.SerilogLogger" Version="1.0.9691.25983" />
