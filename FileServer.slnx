@@ -11,7 +11,6 @@
   </Folder>
   <Folder Name="/WebSystemTools/">
     <Project Path="../WebSystemTools/WebSystemTools.ApiExceptionHandler/WebSystemTools.ApiExceptionHandler.csproj" />
-    <Project Path="../WebSystemTools/WebSystemTools.ConfigurationEncrypt/WebSystemTools.ConfigurationEncrypt.csproj" />
     <Project Path="../WebSystemTools/WebSystemTools.SerilogLogger/WebSystemTools.SerilogLogger.csproj" />
     <Project Path="../WebSystemTools/WebSystemTools.StaticFilesTools/WebSystemTools.StaticFilesTools.csproj" />
     <Project Path="../WebSystemTools/WebSystemTools.SwaggerTools/WebSystemTools.SwaggerTools.csproj" />

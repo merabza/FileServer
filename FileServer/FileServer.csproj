@@ -5,7 +5,6 @@
     <ItemGroup>
         <ProjectReference Include="..\FileServerApi\FileServerApi.csproj" />
         <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.ApiExceptionHandler\WebSystemTools.ApiExceptionHandler.csproj" />
-        <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.ConfigurationEncrypt\WebSystemTools.ConfigurationEncrypt.csproj" />
         <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.SerilogLogger\WebSystemTools.SerilogLogger.csproj" />
         <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.StaticFilesTools\WebSystemTools.StaticFilesTools.csproj" />
         <ProjectReference Include="..\..\WebSystemTools\WebSystemTools.SwaggerTools\WebSystemTools.SwaggerTools.csproj" />

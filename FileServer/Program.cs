@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using WebSystemTools.ApiExceptionHandler.DependencyInjection;
-using WebSystemTools.ConfigurationEncrypt;
 using WebSystemTools.SerilogLogger;
 using WebSystemTools.StaticFilesTools.DependencyInjection;
 using WebSystemTools.SwaggerTools.DependencyInjection;
@@ -18,7 +17,7 @@ try
     Console.WriteLine("Loading...");
 
     const string appName = "File Server";
-    const string appKey = "29ab6e4bcd1a40d8a37ad141d59a575e";
+    //const string appKey = "29ab6e4bcd1a40d8a37ad141d59a575e";
     const int versionCount = 1;
 
     string header = $"{appName} {Assembly.GetEntryAssembly()?.GetName().Version}";
@@ -35,7 +34,7 @@ try
     ILogger? debugLogger = debugMode ? logger : null;
     builder.Host.UseWindowsServiceOnWindows(debugLogger, args);
 
-    builder.Configuration.AddConfigurationEncryption(debugLogger, appKey);
+    //builder.Configuration.AddConfigurationEncryption(debugLogger, appKey);
 
     // @formatter:off
     builder.Services
